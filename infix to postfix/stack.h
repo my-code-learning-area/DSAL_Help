@@ -4,15 +4,13 @@
 template <class type>
 class Stack {
 private:
-     // creating node for doubly linked list |previous | data | next|
+     // creating node for singly linked list = | data | next |
     class Node {
     public:
-        Node *previous;
         type data;
         Node *next;
 
-        Node(type data, Node *previous) {
-            this->previous = previous;
+        Node(type data) {
             this->data = data;
             this->next = NULL;
         }
@@ -36,11 +34,11 @@ public:
     // pushing element in stack
     void push(type n) {
         if(isEmpty()) { // if the stack is empty then assign new node to head
-            Node *newNode = new Node(n, NULL);
+            Node *newNode = new Node(n);
             head = newNode;
             top  = head;
         } else {
-            Node *newNode = new Node(n, top);
+            Node *newNode = new Node(n);
             top->next = newNode;
             top = newNode;
         }
@@ -52,8 +50,12 @@ public:
         if(!isEmpty()){ // if the stack is not empty then perform pop operation
             type removed = top->data;
             if(head != top) {
-                Node *temp = top->previous;
-
+                //Node *temp = top->previous;
+				Node *temp = head;
+				while(temp->next != top) {
+					temp = temp->next;
+				}
+				
                 temp->next = NULL;
                 // deleting element
                 delete top;
@@ -70,19 +72,19 @@ public:
         return 0;
     }
 
-    void display() {
-        if(!isEmpty()) { // if the stack is not empty then perform display operation
-            Node *pre = top;
-            cout<<endl;
-            while(pre != NULL) {
-                cout<<" |\t"<<pre->data<<"\t|"<<endl;
-                pre = pre->previous;
-            }
-            cout<<"--------------------"<<endl;
-        } else {
-            cout<<endl<<"Stack is Empty"<<endl;
-        }
-    }
+//    void display() {
+//        if(!isEmpty()) { // if the stack is not empty then perform display operation
+//            Node *pre = top;
+//            cout<<endl;
+//            while(pre != NULL) {
+//                cout<<" |\t"<<pre->data<<"\t|"<<endl;
+//                pre = pre->previous;
+//            }
+//            cout<<"--------------------"<<endl;
+//        } else {
+//            cout<<endl<<"Stack is Empty"<<endl;
+//        }
+//    }
 
     int getSize() { // return the size of array
         return size;
