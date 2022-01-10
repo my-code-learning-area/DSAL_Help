@@ -65,9 +65,8 @@ public:
             string tem_name = s[i].name;
             double temp_sgpa = s[i].sgpa;
             j = i + 1;
-            while (j < n)
-            {
-                if (s[j].name < tem_name)
+            while (j < n){
+                if (s[j].name[0] < tem_name[0])
                 {
                     tem = s[j].roll;
                     tem_name = s[j].name;
